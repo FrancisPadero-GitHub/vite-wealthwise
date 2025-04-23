@@ -1,10 +1,17 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './assets/css/Main.css'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
 
-createRoot(document.getElementById('root')!).render(
+// import Login from "./auth/Login";
+// import Registration from "./auth/Registration";
+// import Test from "./Test";
+
+
+import "./assets/css/style.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
-  </StrictMode>,
-)
+  </StrictMode>
+);
