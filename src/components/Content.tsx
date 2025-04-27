@@ -1,67 +1,68 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-} from "@mui/material";
-import Button from "@mui/material/Button";
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
-) {
-  return { name, calories, fat, carbs, protein };
-}
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-function Content() {
+import { useState, FormEvent, ChangeEvent } from "react";
+
+export default function Content() {
+  const [answer, setAnswer] = useState<string>("");
+  const [error, setError] = useState<Error | null>(null);
+  const [status, setStatus] = useState<"typing" | "submitting" | "success">(
+    "typing"
+  );
+
+  if (status === "success") {
+    return <h1>That's right!</h1>;
+  }
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("submitting");
+    try {
+      await submitForm(answer);
+      setStatus("success");
+    } catch (err) {
+      setStatus("typing");
+      if (err instanceof Error) {
+        setError(err);
+      } else {
+        setError(new Error("An unknown error occurred."));
+      }
+    }
+  }
+
+  function handleTextareaChange(e: ChangeEvent<HTMLTextAreaElement>) {
+    setAnswer(e.target.value);
+  }
+
   return (
-    <main style={{ padding: "1rem", flex: 1 }}>
-      <h2>Welcome to the main content</h2>
-      <p>This is where your main app goes.</p>
-      <text>This is my React Component !!</text>
-      <Button variant="contained">Material UI</Button>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat&nbsp;(g)</TableCell>
-              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-              <TableCell align="right">Protein&nbsp;(g)</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </main>
+    <>
+      <h2>City quiz</h2>
+      <p>
+        In which city is there a billboard that turns air into drinkable water?
+      </p>
+      <form onSubmit={handleSubmit}>
+        <textarea
+          value={answer}
+          onChange={handleTextareaChange}
+          disabled={status === "submitting"}
+        />
+        <br />
+        <button disabled={answer.length === 0 || status === "submitting"}>
+          Submit
+        </button>
+        {error !== null && <p className="Error">{error.message}</p>}
+      </form>
+    </>
   );
 }
 
-export default Content;
+function submitForm(answer: string): Promise<void> {
+  // Pretend it's hitting the network.
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const shouldError = answer.toLowerCase() !== "lima";
+      if (shouldError) {
+        reject(new Error("Good guess but a wrong answer. Try again!"));
+      } else {
+        resolve();
+      }
+    }, 1500);
+  });
+}

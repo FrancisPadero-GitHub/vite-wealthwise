@@ -1,7 +1,4 @@
-import "../assets/css/style.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-
-export default function LoginTest() {
+export default function Login() {
   return (
     <div className="w-container">
       <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -17,8 +14,6 @@ export default function LoginTest() {
                   </div>
                   {/* Login Form */}
                   <form
-                    method="POST"
-                    action="../controller/authLogin.php"
                     className="needs-validation"
                     noValidate
                   >
@@ -85,7 +80,6 @@ export default function LoginTest() {
                     <div className="mb-3">
                       <button
                         className="btn btn-primary w-100 py-2"
-                        type="submit"
                         name="login"
                       >
                         <i className="bi bi-box-arrow-in-right me-1" /> Login
@@ -95,7 +89,7 @@ export default function LoginTest() {
                     <div className="text-center">
                       <p className="small mb-0">
                         Don't have an account?{" "}
-                        <a href="registration.php" className="text-primary">
+                        <a href="#" className="text-primary">
                           Create an account
                         </a>
                       </p>
