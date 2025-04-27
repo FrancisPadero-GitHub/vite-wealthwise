@@ -1,0 +1,45 @@
+
+[
+  {
+    "Category": "Food and Drinks",
+    "Description": "Francis",
+    "Amount": 50.0,
+    "Date": "March 27, 2025",
+    "Type": "expense"
+  },
+  {
+    "Category": "Transportation",
+    "Description": "Taxi to Airport",
+    "Amount": 25.5,
+    "Date": "March 28, 2025",
+    "Type": "expense"
+  },
+  {
+    "Category": "Salary",
+    "Description": "Monthly Paycheck",
+    "Amount": 2500.0,
+    "Date": "March 31, 2025",
+    "Type": "income"
+  },
+  {
+    "Category": "Utilities",
+    "Description": "Electricity Bill",
+    "Amount": 75.25,
+    "Date": "April 05, 2025",
+    "Type": "expense"
+  },
+  {
+    "Category": "Entertainment",
+    "Description": "Movie Tickets",
+    "Amount": 30.0,
+    "Date": "April 12, 2025",
+    "Type": "expense"
+  },
+  {
+    "Category": "Groceries",
+    "Description": "Weekly Shopping",
+    "Amount": 120.75,
+    "Date": "April 15, 2025",
+    "Type": "expense"
+  }
+]
