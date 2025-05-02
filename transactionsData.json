@@ -41,5 +41,61 @@
     "Amount": 120.75,
     "Date": "April 15, 2025",
     "Type": "expense"
+  },
+  {
+    "Category": "Entertainment",
+    "Description": "Movie Tickets",
+    "Amount": 30.0,
+    "Date": "April 12, 2025",
+    "Type": "expense"
+  },
+  {
+    "Category": "Entertainment",
+    "Description": "Movie Tickets",
+    "Amount": 30.0,
+    "Date": "April 12, 2025",
+    "Type": "expense"
+  },
+  {
+    "Category": "Entertainment",
+    "Description": "Movie Tickets",
+    "Amount": 30.0,
+    "Date": "April 12, 2025",
+    "Type": "expense"
+  },
+  {
+    "Category": "Entertainment",
+    "Description": "Movie Tickets",
+    "Amount": 30.0,
+    "Date": "April 12, 2025",
+    "Type": "expense"
+  },
+  {
+    "Category": "Entertainment",
+    "Description": "Movie Tickets",
+    "Amount": 30.0,
+    "Date": "April 12, 2025",
+    "Type": "expense"
+  },
+  {
+    "Category": "Entertainment",
+    "Description": "Movie Tickets",
+    "Amount": 30.0,
+    "Date": "April 12, 2025",
+    "Type": "expense"
+  },
+  {
+    "Category": "Entertainment",
+    "Description": "Movie Tickets",
+    "Amount": 30.0,
+    "Date": "April 12, 2025",
+    "Type": "expense"
+  },
+  {
+    "Category": "Entertainment",
+    "Description": "Movie Tickets",
+    "Amount": 30.0,
+    "Date": "April 12, 2025",
+    "Type": "expense"
   }
 ]

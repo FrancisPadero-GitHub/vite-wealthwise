@@ -177,7 +177,7 @@ export default function Content() {
             {/* End cards */}
             {/*Add Button & Dummy Data */}
             <div className="d-flex justify-content-between">
-              <form action="../controller/homeGenerateData.php" method="POST">
+              <form>
                 <button
                   type="submit"
                   name="dummy_data"

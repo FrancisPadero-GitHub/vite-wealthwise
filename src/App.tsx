@@ -29,9 +29,11 @@ function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  // OUTDATED NI NGA ROUTING SOLUTIN REFER LNG SA REACT ROUTER WEBSITE
   return (
     <Router>
       <Routes>
+        
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
