@@ -1,4 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./lib/queryClient";
+import ProtectedRoute from "./context/ProtectedRoute";
+
 import Topbar from "./components/Topbar";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
@@ -12,15 +16,15 @@ import "./assets/css/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-// Layout component to wrap dashboard-like pages
-function Layout({ children }: { children: React.ReactNode }) {
+// Layout for authenticated/protected routes
+function Layout() {
   return (
     <>
       <Topbar />
       <Sidebar />
       <div className="wrapper">
         <main id="main" className="main">
-          {children}
+          <Outlet />
         </main>
       </div>
       <Footer />
@@ -28,35 +32,41 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
-  // OUTDATED NI NGA ROUTING SOLUTIN REFER LNG SA REACT ROUTER WEBSITE
-  return (
-    <Router>
-      <Routes>
-        
-        {/* Public Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Registration />} />
+// Define routes using createBrowserRouter
+const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Registration />,
+  },
+  {
+    path: "/",
+    element: (
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        index: true, // Default for "/"
+        element: <Content />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      // You can add more nested layout routes here
+    ],
+  },
+]);
 
-        {/* Protected / Layout Routes */}
-        <Route
-          path="/"
-          element={
-            <Layout>
-              <Content />
-            </Layout>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <Layout>
-              <Profile />
-            </Layout>
-          }
-        />
-        {/* Add more layout-wrapped routes here */}
-      </Routes>
-    </Router>
+export default function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }
